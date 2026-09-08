@@ -1,7 +1,5 @@
 package com.bookmate.model;
-
-
-
+import java.util.List;
 import java.util.List;
 
 public class Book {
@@ -10,7 +8,6 @@ public class Book {
     private String isbn;
     private String title;
     private String description;
-
     private int publicationYear;
 
     private Author author;

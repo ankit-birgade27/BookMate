@@ -5,6 +5,8 @@ package com.bookmate.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.bookmate.enums.MemberStatus;
+
 
 
 public class Member {
