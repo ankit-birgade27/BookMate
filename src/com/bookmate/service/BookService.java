@@ -11,6 +11,11 @@ public interface BookService {
 
     Book addBook(Book book);
 
+    boolean isISBNExist(String isbn);
+    boolean isBookTitle(String title);
+    boolean isAuthorExist(String author);
+    boolean isCategoryExist(String category);
+
     Book getBookById(String bookId);
 
     List<Book> getAllBooks();

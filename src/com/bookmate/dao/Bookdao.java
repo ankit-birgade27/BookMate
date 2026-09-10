@@ -1,5 +1,6 @@
 package com.bookmate.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.model.Author;
@@ -17,6 +18,16 @@ public class Bookdao {
 		List<Book> books = DataStore.getBooks();
 		for(Book book: books) {
 			if(book.getIsbn().equals(isbn)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	public Book findById(String bookId) {
+		List<Book> books = DataStore.getBooks();
+		for(Book book: books) {
+			if(book.getBookId().equals(bookId)) {
 				return book;
 			}
 		}
@@ -42,5 +53,10 @@ public class Bookdao {
 			}
 		}
 		return null;
+	}
+	
+	
+	public List<Book> getAllBooks(){
+		return new ArrayList<>(DataStore.getBooks());
 	}
 }
