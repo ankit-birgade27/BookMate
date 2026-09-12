@@ -1,4 +1,4 @@
-package com.bookmate.exception;
+package com.bookmate.Exception;
 
 public class DuplicateISBNException extends RuntimeException{
 	public DuplicateISBNException(String msg) {
