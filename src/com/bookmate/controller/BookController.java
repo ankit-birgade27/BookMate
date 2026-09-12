@@ -9,8 +9,11 @@ import com.bookmate.model.Publisher;
 
 import com.bookmate.Exception.InvalidBookException;
 import com.bookmate.Exception.InvalidSearchException;
+import com.bookmate.Exception.AuthorNotFoundException;
 import com.bookmate.Exception.BookNotFoundException;
 import com.bookmate.Exception.BookOperationException;
+import com.bookmate.Exception.CategoryNotFoundException;
+import com.bookmate.Exception.DuplicateISBNException;
 
 
 public class BookController {
@@ -239,10 +242,23 @@ public class BookController {
         book.setCategory(category);
 
         // Call Service
-        Book updatedBook = bookService.updateBook(book);
+        try {
+        		Book updatedBook = bookService.updateBook(book);
+        		System.out.println("Book updated successfully.");
+            System.out.println(updatedBook);
+		} catch (InvalidBookException e) {
+			System.out.println("Invalid Book: " + e.getMessage());
+		} catch (BookNotFoundException e) {
+			System.out.println("Book Not Found: " + e.getMessage());
+		} catch (DuplicateISBNException e) {
+			System.out.println("Duplicate ISBN: " + e.getMessage());
+		} catch (AuthorNotFoundException e) {
+			System.out.println("Author Not Found: " + e.getMessage());
+		} catch (CategoryNotFoundException e) {
+			System.out.println("Category Not Found: " + e.getMessage());
+		}
 
-        System.out.println("Book updated successfully.");
-        System.out.println(updatedBook);
+        
     }
 
 

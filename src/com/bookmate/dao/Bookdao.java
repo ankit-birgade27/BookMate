@@ -59,5 +59,37 @@ public class Bookdao {
 	public List<Book> getAllBooks(){
 		return new ArrayList<>(DataStore.getBooks());
 	}
+
+
+	public List<Book> search(String keyword) {
+		
+		return null;
+	}
+
+
+	public void deleteBook(String bookId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void updateBook(Book book) {
+		List<Book> books = DataStore.getBooks();
+		
+		for(int i = 0; i < books.size(); i++) {
+			Book existingBook = books.get(i);
+			
+			if(existingBook.getBookId().equals(book.getBookId())) {
+				existingBook.setIsbn(book.getIsbn());
+				existingBook.setTitle(book.getTitle());
+	            existingBook.setDescription(book.getDescription());
+	            existingBook.setPublicationYear(book.getPublicationYear());
+	            existingBook.setAuthor(book.getAuthor());
+	            existingBook.setPublisher(book.getPublisher());
+	            existingBook.setCategory(book.getCategory());
+
+	            return;
+			}
+		}
+	}
 }
 
