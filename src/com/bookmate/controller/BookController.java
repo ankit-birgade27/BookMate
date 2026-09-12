@@ -7,6 +7,11 @@ import com.bookmate.model.Book;
 import com.bookmate.model.Category;
 import com.bookmate.model.Publisher;
 
+import com.bookmate.Exception.InvalidBookException;
+import com.bookmate.Exception.InvalidSearchException;
+import com.bookmate.Exception.BookNotFoundException;
+import com.bookmate.Exception.BookOperationException;
+
 
 public class BookController {
 
@@ -244,26 +249,71 @@ public class BookController {
     // 5. Delete Book
     private void deleteBook() {
 
-        System.out.print("Enter Book ID: ");
+    System.out.print("Enter Book ID: ");
+    String bookId = scanner.nextLine();
 
-        String bookId = scanner.nextLine();
+    try {
 
         bookService.deleteBook(bookId);
 
         System.out.println("Book deleted successfully.");
+
+    } catch (InvalidBookException e) {
+
+        System.out.println(
+                "Invalid Book: " + e.getMessage());
+
+    } catch (BookNotFoundException e) {
+
+        System.out.println(
+                "Book Not Found: " + e.getMessage());
+
+    } catch (BookOperationException e) {
+
+        System.out.println(
+                "Book Operation Error: " + e.getMessage());
     }
+}
 
 
     // 6. Search Books
     private void searchBooks() {
 
-        System.out.print("Enter search keyword: ");
+    System.out.print("Enter search keyword: ");
 
-        String keyword = scanner.nextLine();
+    String keyword = scanner.nextLine();
 
-        
+    try {
 
+        List<Book> books = bookService.searchBooks(keyword);
+
+        if (books.isEmpty()) {
+
+            System.out.println("No books found.");
+
+        } else {
+
+            System.out.println("Books found:");
+
+            for (Book book : books) {
+
+                System.out.println("----------------------------");
+                System.out.println("Book ID: " + book.getBookId());
+                System.out.println("ISBN: " + book.getIsbn());
+                System.out.println("Title: " + book.getTitle());
+                System.out.println("Description: " + book.getDescription());
+            }
+        }
+
+    } catch (InvalidSearchException e) {
+
+        System.out.println("Invalid Search: " + e.getMessage());
+
+    } catch (BookOperationException e) {
+
+        System.out.println("Book Operation Error: " + e.getMessage());
     }
+}
 
 
     // 7. Get Books By Category
