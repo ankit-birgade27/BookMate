@@ -3,54 +3,61 @@ package com.bookmate.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bookmate.model.Author;
 import com.bookmate.model.Book;
+import com.bookmate.model.Category;
+import com.bookmate.storage.DataStore;
 
 public class Bookdao {
+	public void saveBook(Book book) {
+		DataStore.getBooks().add(book);
+	}
 	
-    private List<Book> books = new ArrayList<>();
-     // Find book by ID
-    public Book findById(String bookId) {
-
-        for (Book book : books) {
-
-            if (book.getBookId().equals(bookId)) {
-                return book;
-            }
-        }
-
-        return null;
-    }
-
-    // Delete book by ID
-    public void deleteBook(String bookId) {
-
-        books.removeIf(book ->
-                book.getBookId().equals(bookId));
-    }
-
-    // Search books
-    public List<Book> search(String keyword) {
-
-        List<Book> result = new ArrayList<>();
-
-        String searchKeyword = keyword.toLowerCase().trim();
-
-        for (Book book : books) {
-
-            if ((book.getTitle() != null &&
-                    book.getTitle().toLowerCase().contains(searchKeyword))
-
-                    || (book.getIsbn() != null &&
-                    book.getIsbn().toLowerCase().contains(searchKeyword))
-
-                    || (book.getDescription() != null &&
-                    book.getDescription().toLowerCase().contains(searchKeyword))) {
-
-                result.add(book);
-            }
-        }
-
-        return result;
-    }
+	
+	public Book findByISBN(String isbn) {
+		List<Book> books = DataStore.getBooks();
+		for(Book book: books) {
+			if(book.getIsbn().equals(isbn)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	public Book findById(String bookId) {
+		List<Book> books = DataStore.getBooks();
+		for(Book book: books) {
+			if(book.getBookId().equals(bookId)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	
+	public Author findAuthorById(String authorId) {
+		List<Author> authors = DataStore.getAuthors();
+		for(Author author:authors) {
+			if(author.getAuthorId().equals(authorId)) {
+				return author;
+			}
+		}
+		return null;
+	}
+	
+	public Category findCategoryById(String categoryId) {
+		List<Category> categories = DataStore.getCategories();
+		for(Category category: categories) {
+			if(category.getCategoryId().equals(categoryId)) {
+				return category;
+			}
+		}
+		return null;
+	}
+	
+	
+	public List<Book> getAllBooks(){
+		return new ArrayList<>(DataStore.getBooks());
+	}
 }
 
