@@ -173,7 +173,16 @@ public class BookController {
 
 
         // Call Service
-     
+        try {
+            bookService.addBook(book);
+            System.out.println("Book added successfully.");
+        } catch (InvalidBookException e) {
+            System.out.println("Invalid Book: " + e.getMessage());
+        } catch (DuplicateISBNException e) {
+            System.out.println("Duplicate ISBN: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error adding book: " + e.getMessage());
+        }
     }
 
     // 2. Get Book By ID
@@ -183,7 +192,20 @@ public class BookController {
 
         String bookId = scanner.nextLine();
 
-     
+        try {
+            Book book = bookService.getBookById(bookId);
+            System.out.println("----------------------------");
+            System.out.println("Book ID: " + book.getBookId());
+            System.out.println("ISBN: " + book.getIsbn());
+            System.out.println("Title: " + book.getTitle());
+            System.out.println("Description: " + book.getDescription());
+        } catch (InvalidBookException e) {
+            System.out.println("Invalid Book: " + e.getMessage());
+        } catch (BookNotFoundException e) {
+            System.out.println("Book Not Found: " + e.getMessage());
+        } catch (BookOperationException e) {
+            System.out.println("Book Operation Error: " + e.getMessage());
+        }
     }
 
 
@@ -357,7 +379,26 @@ public class BookController {
 
         String categoryId = scanner.nextLine();
 
-      
+        try {
+            List<Book> books = bookService.getBooksByCategory(categoryId);
+
+            if (books == null || books.isEmpty()) {
+                System.out.println("No books found.");
+            } else {
+                System.out.println("Books found:");
+                for (Book book : books) {
+                    System.out.println("----------------------------");
+                    System.out.println("Book ID: " + book.getBookId());
+                    System.out.println("ISBN: " + book.getIsbn());
+                    System.out.println("Title: " + book.getTitle());
+                    System.out.println("Description: " + book.getDescription());
+                }
+            }
+        } catch (CategoryNotFoundException e) {
+            System.out.println("Category Not Found: " + e.getMessage());
+        } catch (BookOperationException e) {
+            System.out.println("Book Operation Error: " + e.getMessage());
+        }
     }
 
 
@@ -368,7 +409,26 @@ public class BookController {
 
         String authorId = scanner.nextLine();
 
-      
+        try {
+            List<Book> books = bookService.getBooksByAuthor(authorId);
+
+            if (books == null || books.isEmpty()) {
+                System.out.println("No books found.");
+            } else {
+                System.out.println("Books found:");
+                for (Book book : books) {
+                    System.out.println("----------------------------");
+                    System.out.println("Book ID: " + book.getBookId());
+                    System.out.println("ISBN: " + book.getIsbn());
+                    System.out.println("Title: " + book.getTitle());
+                    System.out.println("Description: " + book.getDescription());
+                }
+            }
+        } catch (AuthorNotFoundException e) {
+            System.out.println("Author Not Found: " + e.getMessage());
+        } catch (BookOperationException e) {
+            System.out.println("Book Operation Error: " + e.getMessage());
+        }
     }
 
     // 9. Check Book Exists
@@ -378,6 +438,11 @@ public class BookController {
 
         String bookId = scanner.nextLine();
 
-       
+        boolean exists = bookService.bookExists(bookId);
+        if (exists) {
+            System.out.println("Book exists with ID: " + bookId);
+        } else {
+            System.out.println("Book does not exist with ID: " + bookId);
+        }
     }
 }

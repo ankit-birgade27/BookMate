@@ -67,6 +67,30 @@ public class Bookdao {
 		return findAll();
 	}
 
+	public List<Book> findByCategory(String categoryId) {
+		List<Book> result = new ArrayList<>();
+		if (categoryId == null) return result;
+		for (Book book : DataStore.getBooks()) {
+			if (book.getCategory() != null && book.getCategory().getCategoryId() != null
+					&& book.getCategory().getCategoryId().equalsIgnoreCase(categoryId.trim())) {
+				result.add(book);
+			}
+		}
+		return result;
+	}
+
+	public List<Book> findByAuthor(String authorId) {
+		List<Book> result = new ArrayList<>();
+		if (authorId == null) return result;
+		for (Book book : DataStore.getBooks()) {
+			if (book.getAuthor() != null && book.getAuthor().getAuthorId() != null
+					&& book.getAuthor().getAuthorId().equalsIgnoreCase(authorId.trim())) {
+				result.add(book);
+			}
+		}
+		return result;
+	}
+
 
 	
 	public List<Book> search(String keyword) {

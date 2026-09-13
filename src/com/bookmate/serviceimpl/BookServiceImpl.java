@@ -43,8 +43,20 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book getBookById(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (bookId == null || bookId.trim().isEmpty()) {
+			throw new InvalidBookException("Book ID is required.");
+		}
+		try {
+			Book book = bookDao.findById(bookId.trim());
+			if (book == null) {
+				throw new BookNotFoundException("Book not found with ID: " + bookId);
+			}
+			return book;
+		} catch (BookNotFoundException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new BookOperationException("Unable to retrieve book.");
+		}
 	}
 
 	@Override
@@ -169,14 +181,34 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> getBooksByCategory(String categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (categoryId == null || categoryId.trim().isEmpty()) {
+			throw new CategoryNotFoundException("Category ID is required.");
+		}
+		try {
+			List<Book> books = bookDao.findByCategory(categoryId.trim());
+			if (books == null) {
+				return new ArrayList<>();
+			}
+			return books;
+		} catch (Exception e) {
+			throw new BookOperationException("Unable to retrieve books by category.");
+		}
 	}
 
 	@Override
 	public List<Book> getBooksByAuthor(String authorId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (authorId == null || authorId.trim().isEmpty()) {
+			throw new AuthorNotFoundException("Author ID is required.");
+		}
+		try {
+			List<Book> books = bookDao.findByAuthor(authorId.trim());
+			if (books == null) {
+				return new ArrayList<>();
+			}
+			return books;
+		} catch (Exception e) {
+			throw new BookOperationException("Unable to retrieve books by author.");
+		}
 	}
 
 	@Override
