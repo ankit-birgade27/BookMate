@@ -61,15 +61,22 @@ public class Bookdao {
 	}
 
 
+	
 	public List<Book> search(String keyword) {
-		
-		return null;
+	    List<Book> result = new ArrayList<>();
+	    String searchKeyword = keyword.toLowerCase().trim();
+	    for (Book book : DataStore.getBooks()) {
+	        if ((book.getTitle() != null && book.getTitle().toLowerCase().contains(searchKeyword))
+	                || (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(searchKeyword))
+	                || (book.getDescription() != null && book.getDescription().toLowerCase().contains(searchKeyword))) {
+	            result.add(book);
+	        }
+	    }
+	    return result;
 	}
 
-
 	public void deleteBook(String bookId) {
-		// TODO Auto-generated method stub
-		
+	    DataStore.getBooks().removeIf(book -> book.getBookId().equals(bookId));
 	}
 	
 	public void updateBook(Book book) {
