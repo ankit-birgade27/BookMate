@@ -55,9 +55,16 @@ public class Bookdao {
 		return null;
 	}
 	
-	
+	public List<Book> findAll() {
+		List<Book> books = DataStore.getBooks();
+		if (books == null) {
+			return new ArrayList<>();
+		}
+		return new ArrayList<>(books);
+	}
+
 	public List<Book> getAllBooks(){
-		return new ArrayList<>(DataStore.getBooks());
+		return findAll();
 	}
 
 

@@ -61,7 +61,7 @@ public class BookController {
                     break;
 
                 case 3:
-                    getAllBooks();
+                    showAllBooks();
                     break;
 
                 case 4:
@@ -188,11 +188,29 @@ public class BookController {
 
 
     // 3. Get All Books
+    public void showAllBooks() {
+        try {
+            List<Book> books = bookService.getAllBooks();
+
+            if (books == null || books.isEmpty()) {
+                System.out.println("No books found.");
+            } else {
+                System.out.println("Books found:");
+                for (Book book : books) {
+                    System.out.println("----------------------------");
+                    System.out.println("Book ID: " + book.getBookId());
+                    System.out.println("ISBN: " + book.getIsbn());
+                    System.out.println("Title: " + book.getTitle());
+                    System.out.println("Description: " + book.getDescription());
+                }
+            }
+        } catch (BookOperationException e) {
+            System.out.println("Book Operation Error: " + e.getMessage());
+        }
+    }
+
     private void getAllBooks() {
-
-        List<Book> books = bookService.getAllBooks();
-
-      
+        showAllBooks();
     }
 
 

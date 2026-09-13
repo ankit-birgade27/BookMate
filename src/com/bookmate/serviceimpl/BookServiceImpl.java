@@ -1,5 +1,6 @@
 package com.bookmate.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.dao.Bookdao;
@@ -48,8 +49,15 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> getAllBooks() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			List<Book> books = bookDao.findAll();
+			if (books == null) {
+				return new ArrayList<>();
+			}
+			return books;
+		} catch (Exception e) {
+			throw new BookOperationException("Unable to retrieve books.");
+		}
 	}
 
 	@Override
