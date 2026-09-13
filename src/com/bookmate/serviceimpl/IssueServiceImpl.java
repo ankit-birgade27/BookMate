@@ -33,7 +33,6 @@ public class IssueServiceImpl implements IssueService{
 			throw new IssueNotFoundException("Issue not found");
 		}
 		
-		
 		return issue;
 	}
 
