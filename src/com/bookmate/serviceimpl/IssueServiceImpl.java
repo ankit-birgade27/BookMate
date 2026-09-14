@@ -2,8 +2,8 @@ package com.bookmate.serviceimpl;
 
 import java.util.List;
 
-import com.bookmate.Exception.InvalidIssueException;
-import com.bookmate.Exception.IssueNotFoundException;
+import com.bookmate.exception.InvalidIssueException;
+import com.bookmate.exception.IssueNotFoundException;
 import com.bookmate.dao.Issuedao;
 import com.bookmate.model.IssueRecord;
 import com.bookmate.service.IssueService;
