@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.dao.Bookdao;
-import com.bookmate.Exception.DuplicateISBNException;
-import com.bookmate.Exception.InvalidBookException;
+import com.bookmate.exception.DuplicateISBNException;
+import com.bookmate.exception.InvalidBookException;
 import com.bookmate.model.Book;
 import com.bookmate.service.BookService;
-import com.bookmate.Exception.AuthorNotFoundException;
-import com.bookmate.Exception.BookNotFoundException;
-import com.bookmate.Exception.BookOperationException;
-import com.bookmate.Exception.CategoryNotFoundException;
-import com.bookmate.Exception.InvalidSearchException;
+import com.bookmate.exception.AuthorNotFoundException;
+import com.bookmate.exception.BookNotFoundException;
+import com.bookmate.exception.BookOperationException;
+import com.bookmate.exception.CategoryNotFoundException;
+import com.bookmate.exception.InvalidSearchException;
 
 public class BookServiceImpl implements BookService {
 

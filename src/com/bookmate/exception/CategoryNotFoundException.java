@@ -1,4 +1,4 @@
-package com.bookmate.Exception;
+package com.bookmate.exception;
 
 public class CategoryNotFoundException extends RuntimeException{
 	public CategoryNotFoundException(String msg) {

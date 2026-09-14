@@ -7,13 +7,13 @@ import com.bookmate.model.Book;
 import com.bookmate.model.Category;
 import com.bookmate.model.Publisher;
 
-import com.bookmate.Exception.InvalidBookException;
-import com.bookmate.Exception.InvalidSearchException;
-import com.bookmate.Exception.AuthorNotFoundException;
-import com.bookmate.Exception.BookNotFoundException;
-import com.bookmate.Exception.BookOperationException;
-import com.bookmate.Exception.CategoryNotFoundException;
-import com.bookmate.Exception.DuplicateISBNException;
+import com.bookmate.exception.InvalidBookException;
+import com.bookmate.exception.InvalidSearchException;
+import com.bookmate.exception.AuthorNotFoundException;
+import com.bookmate.exception.BookNotFoundException;
+import com.bookmate.exception.BookOperationException;
+import com.bookmate.exception.CategoryNotFoundException;
+import com.bookmate.exception.DuplicateISBNException;
 
 
 public class BookController {
