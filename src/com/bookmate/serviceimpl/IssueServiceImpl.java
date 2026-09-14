@@ -2,7 +2,8 @@ package com.bookmate.serviceimpl;
 
 import java.util.List;
 
-import com.bookmate.dao.FineDao;
+import com.bookmate.Exception.InvalidIssueException;
+import com.bookmate.Exception.IssueNotFoundException;
 import com.bookmate.dao.Issuedao;
 import com.bookmate.model.IssueRecord;
 import com.bookmate.service.IssueService;
@@ -22,8 +23,18 @@ public class IssueServiceImpl implements IssueService{
 
 	@Override
 	public IssueRecord getIssueById(String issueId) {
-		// TODO Auto-generated method stub
-		return null;
+		if(issueId == null || issueId.isBlank()) {
+			throw new InvalidIssueException("Invalid Issue ID");
+		}
+		
+		IssueRecord issue = Issuedao.findById(issueId);
+		
+		if(issue == null) {
+			throw new IssueNotFoundException("Issue not found");
+		}
+		
+		
+		return issue;
 	}
 
 	@Override
