@@ -1,4 +1,4 @@
-package com.bookmate.Exception;
+package com.bookmate.exception;
 
 public class InvalidIssueException extends RuntimeException{
 	public InvalidIssueException(String msg) {
