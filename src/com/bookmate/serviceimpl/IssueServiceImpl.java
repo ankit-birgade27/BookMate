@@ -1,9 +1,11 @@
 package com.bookmate.serviceimpl;
 
-import java.util.List;
+import java.util.List;	
 
 import com.bookmate.dao.FineDao;
 import com.bookmate.dao.Issuedao;
+import com.bookmate.exception.BookCopyNotFoundException;
+import com.bookmate.exception.InvalidIssueException;
 import com.bookmate.model.IssueRecord;
 import com.bookmate.service.IssueService;
 
@@ -23,6 +25,7 @@ public class IssueServiceImpl implements IssueService{
 	@Override
 	public IssueRecord getIssueById(String issueId) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
