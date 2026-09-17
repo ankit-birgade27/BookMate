@@ -1,8 +1,10 @@
 package com.bookmate.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.dao.MemberDao;
+import com.bookmate.exception.MemberOperationException;
 import com.bookmate.model.Member;
 import com.bookmate.service.MemberService;
 
@@ -30,13 +32,20 @@ public class MemberServiceImpl  implements MemberService{
 
 	@Override
 	public List<Member> getAllMembers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Member> members = memberDao.findAll();
+		
+		if(members == null){
+			throw new MemberOperationException("Invalid List");
+		}
+		if(members.isEmpty()) {
+			return new ArrayList<Member>();
+		}
+		return members;
 	}
 
 	@Override
 	public Member updateMember(Member member) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
