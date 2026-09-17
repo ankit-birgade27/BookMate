@@ -1,6 +1,7 @@
 package com.bookmate.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 import com.bookmate.enums.MemberStatus;
@@ -137,7 +138,21 @@ public class MemberController {
     // 3. Get All Members
     private void getAllMembers() {
 
-        // Student will write Service call here
+        try {
+        	List<Member> members = memberService.getAllMembers();
+        	 if (members.isEmpty()) {
+                 System.out.println("No members found.");
+                 return;
+             }
+
+             System.out.println("\n========== ALL MEMBERS ==========");
+
+             for (Member member : members) {
+                 System.out.println(member);
+             }
+		} catch (Exception e) {
+			System.out.println("Error while fetching members: " + e.getMessage());
+		}
     }
 
 

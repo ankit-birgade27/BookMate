@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.model.Member;
-
+import com.bookmate.storage.DataStore;
 
 public class MemberDao {
-	   private List<Member> members = new ArrayList<>();
+	public List<Member> findAll(){
+		return new ArrayList<>(DataStore.getMembers());
+	}
 }
 
 
