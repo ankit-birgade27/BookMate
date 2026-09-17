@@ -1,10 +1,12 @@
 package com.bookmate.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.exception.BookCopyNotFoundException;
 import com.bookmate.exception.InvalidIssueException;
 import com.bookmate.exception.IssueNotFoundException;
+import com.bookmate.exception.IssueOperationException;
 import com.bookmate.exception.MemberNotFoundException;
 import com.bookmate.dao.Issuedao;
 import com.bookmate.model.IssueRecord;
@@ -89,11 +91,19 @@ public class IssueServiceImpl implements IssueService {
         return issue;
     }
 
-    @Override
-    public List<IssueRecord> getAllIssues() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    @Override       
+	public List<IssueRecord> getAllIssues() {
+		try{
+		List<IssueRecord> issues = Issuedao.findAll();
+        if(issues.isEmpty()){
+			return new ArrayList<>();
+		}
+	
+		return issues;
+	}catch(Exception e){
+	    throw new IssueOperationException("Unable to retrieve issues");
+	}
+	}
 
     @Override
     public List<IssueRecord> getMemberIssueHistory(String memberId) {

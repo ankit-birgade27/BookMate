@@ -9,6 +9,9 @@ import com.bookmate.model.Member;
 import com.bookmate.storage.DataStore;
 
 public class Issuedao{
+	public List<IssueRecord> findAll(){
+		return new ArrayList<>(DataStore.getIssues());
+	}
 	
 	public IssueRecord findById(String issueId) {
 		List<IssueRecord> issues = DataStore.getIssues();
