@@ -121,6 +121,13 @@ public class MemberController {
         );
 
       //call service method
+        try { 
+	        	Member registeredMember = memberService.registerMember(member); 
+	        	System.out.println("Member registered successfully!"); 
+	        	System.out.println("Member ID: " + registeredMember.getMemberId());
+        	} catch (Exception e) { 
+        		System.out.println("Error: " + e.getMessage()); 
+        	}
     }
 
 
@@ -132,6 +139,13 @@ public class MemberController {
         String memberId = scanner.nextLine();
 
       //call service method
+        try {
+            Member member = memberService.getMemberById(memberId);
+            System.out.println("Member Found:");
+            System.out.println(member);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
 
