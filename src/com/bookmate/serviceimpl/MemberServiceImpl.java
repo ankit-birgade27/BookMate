@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bookmate.dao.MemberDao;
+import com.bookmate.exception.InvalidMemberException;
 import com.bookmate.exception.MemberOperationException;
 import com.bookmate.model.Member;
 import com.bookmate.service.MemberService;
@@ -20,15 +21,24 @@ public class MemberServiceImpl  implements MemberService{
 
 	@Override
 	public Member registerMember(Member member) {
-		// TODO Auto-generated method stub
 		return null;
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Member getMemberById(String memberId) {
+		if(memberId.isBlank() || memberId==null) {
+			throw new InvalidMemberException("Invalid memberId");
+		}
 		// TODO Auto-generated method stub
+		Member member=memberDao.findById(memberId);
+		
+		if(member==null) {
+			throw new InvalidMemberException("Member not found");
+		}
 		return null;
 	}
+	
 
 	@Override
 	public List<Member> getAllMembers() {
