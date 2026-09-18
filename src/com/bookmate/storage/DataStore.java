@@ -9,6 +9,7 @@ import com.bookmate.model.BookCopy;
 import com.bookmate.model.Category;
 import com.bookmate.model.IssueRecord;
 import com.bookmate.model.Member;
+import com.bookmate.model.ReturnRecord;
 
 public class DataStore {
 	
@@ -23,6 +24,8 @@ public class DataStore {
 	private static final List<Member> members=new ArrayList<> ();
 	
 	private static final List<BookCopy> copies = new ArrayList<>();
+	
+	private static final List<ReturnRecord> returnRecords = new ArrayList<>();
 	
 	public static List<Author> getAuthors(){
 		return authors;
@@ -46,6 +49,10 @@ public class DataStore {
 	
 	public static List<BookCopy> getcopies(){
 		return copies ;
+	}
+	
+	public static List<ReturnRecord> getReturnRecords(){
+		return returnRecords;
 	}
 
 }

@@ -1,5 +1,4 @@
 package com.bookmate.dao;
-
 import java.util.List;
 import com.bookmate.enums.BookStatus;
 import com.bookmate.model.Book;
@@ -52,5 +51,15 @@ public class ReturnDao {
 	}
 	
 	
+	public ReturnRecord findById(String returnId) {
+		for(ReturnRecord record : DataStore.getReturnRecords()) {
+			if(returnId.equals(record.getReturnId())) {
+				return record;
+			}
+		}
+		
+		return null;
+		
+	}
 }
 
