@@ -2,6 +2,7 @@ package com.bookmate.controller;
 
 import java.util.Scanner;
 
+import com.bookmate.model.ReturnRecord;
 import com.bookmate.service.ReturnService;
 
 public class ReturnController {
@@ -84,6 +85,14 @@ public class ReturnController {
         String returnId = scanner.nextLine();
 
         // Call proper method from Service
+        
+        try {
+			ReturnRecord record = returnService.getReturnById(returnId);
+			System.out.println("Return Record found: ");
+			System.out.println(record);
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
     }
 
 
