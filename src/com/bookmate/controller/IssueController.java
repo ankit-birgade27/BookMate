@@ -3,8 +3,11 @@ package com.bookmate.controller;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
+import com.bookmate.exception.IssueOperationException;
+import com.bookmate.model.IssueRecord;
 import com.bookmate.service.IssueService;
 
 public class IssueController {
@@ -103,10 +106,27 @@ public class IssueController {
     }
 
 
-    // 3. Get All Issues
+   // 3. Get All Issues
     private void getAllIssues() {
 
-        // Call proper method from Service
+    try {
+        List<IssueRecord> issues = issueService.getAllIssues();
+
+        if (issues.isEmpty()) {
+            System.out.println("No issues found.");
+            return;
+        }
+
+        System.out.println("\n========== ALL ISSUES ==========");
+
+        for (IssueRecord issue : issues) {
+            System.out.println(issue);
+            System.out.println("-------------------------------");
+        }
+
+    } catch (IssueOperationException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }
 
 
