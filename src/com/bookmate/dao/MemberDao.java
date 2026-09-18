@@ -2,11 +2,14 @@ package com.bookmate.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.bookmate.model.Member;
 import com.bookmate.storage.DataStore;
 
 public class MemberDao {
+	private static final AtomicInteger idGenerator = new AtomicInteger(1001);
+	
 	public List<Member> findAll(){
 		return new ArrayList<>(DataStore.getMembers());
 	}
@@ -48,6 +51,12 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
+	public int generateUniqueMemberId() {
+		return idGenerator.getAndIncrement();
+	}
+	
+	
 }
 
 
