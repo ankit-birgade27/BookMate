@@ -35,19 +35,21 @@ public class ReturnDao {
 	}
 	
 	public void updateBookCopyStatus(String copyId, String status) {
-		List<BookCopy> copies=DataStore.getcopies();
-		
-		for(int i=0;i<copies.size();i++) {
-			BookCopy existingRecord=copies.get(i);
-			
-			if(copyId.equals(existingRecord.getCopyId())) {
-				existingRecord.setStatus(BookStatus.AVAILABLE);
-			}
-		}
+
+	    List<BookCopy> copies = DataStore.getcopies();
+
+	    for (BookCopy existingRecord : copies) {
+
+	        if (copyId.equals(existingRecord.getCopyId())) {
+
+	            existingRecord.setStatus(BookStatus.valueOf(status));
+	            return;
+	        }
+	    }
 	}
 	
 	public void saveReturn(ReturnRecord returnRecord) {
-		
+		DataStore.getReturnRecords().add(returnRecord);
 	}
 	
 	
