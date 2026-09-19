@@ -90,6 +90,14 @@ public class FineController {
         String issueId = scanner.nextLine();
 
         // Call proper method from Service
+        
+        try {
+			Fine fine = fineService.calculateFine(issueId);
+			System.out.println("Fine: ");
+			System.out.println(fine);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
     }
 
     // 2. Get Fine By ID
