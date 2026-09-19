@@ -1,10 +1,17 @@
 package com.bookmate.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.bookmate.model.Fine;
+import com.bookmate.storage.DataStore;
 
 public class FineDao {
-    private List<Fine> fines = new ArrayList<>();
+	
+	public Fine findById(String fineId) {
+		for(Fine fine : DataStore.getFines()) {
+			if(fineId.equals(fine.getFineId())) {
+				return fine;
+			}
+		}
+		return null;
+	}
+    
 }
