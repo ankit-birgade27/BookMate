@@ -2,6 +2,7 @@ package com.bookmate.controller;
 
 import java.util.Scanner;
 
+import com.bookmate.model.Fine;
 import com.bookmate.service.FineService;
 
 public class FineController {
@@ -99,6 +100,14 @@ public class FineController {
         String fineId = scanner.nextLine();
 
         // Call proper method from Service
+        
+        try {
+			Fine fine = fineService.getFineById(fineId);
+			System.out.println("Fine found: " + fine);
+			System.out.println(fine);
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
     }
 
     // 3. Get All Fines

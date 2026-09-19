@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.bookmate.dao.FineDao;
+import com.bookmate.exception.FineNotFoundException;
+import com.bookmate.exception.InvalidFineException;
 import com.bookmate.model.Fine;
 import com.bookmate.service.FineService;
 
@@ -22,8 +24,17 @@ public  class FineServiceImpl implements FineService {
 
 	@Override
 	public Fine getFineById(String fineId) {
-		// TODO Auto-generated method stub
-		return null;
+		if(fineId == null || fineId.isBlank()) {
+			throw new InvalidFineException("Invalid Fine Id");
+		}
+		
+		Fine fine = fineDao.findById(fineId);
+		
+		if(fine == null) {
+			throw new FineNotFoundException("Fine not found");
+		}
+		
+		return fine;
 	}
 
 	@Override
