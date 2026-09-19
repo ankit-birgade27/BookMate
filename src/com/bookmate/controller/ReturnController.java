@@ -75,6 +75,24 @@ public class ReturnController {
         String issueId = scanner.nextLine();
 
         // Call proper method from Service
+        try {
+
+            ReturnRecord record = returnService.returnBook(issueId);
+
+            System.out.println("Book returned successfully.");
+            System.out.println("Return ID: " + record.getReturnId());
+            System.out.println("Issue ID: " +
+                    record.getIssueRecord().getIssueId());
+            System.out.println("Return Date: " +
+                    record.getReturnDate());
+            System.out.println("Overdue Days: " +
+                    record.getOverdueDays());
+
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e.getMessage());
+        }
+
     }
 
 
